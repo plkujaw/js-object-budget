@@ -25,10 +25,13 @@ class UI {
       setTimeout(function() {
         self.budgetFeedback.classList.remove("showItem");
       }, 2000);
+    } else {
+      this.budgetAmount.textContent = budgetValue;
+      this.budgetInput.value = "";
+      this.showBalance();
+
     }
   }
-
-
 
 }
 
