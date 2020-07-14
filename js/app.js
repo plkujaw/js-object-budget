@@ -32,7 +32,18 @@ class UI {
 
     }
   }
+  // show/update balance
+  showBalance() {
+    const expense = this.totalExpense();
+    const total = parseInt(this.budgetAmount.textContent) - expense;
+    this.balanceAmount.textContent = total;
+  }
 
+  // calculate total expense
+  totalExpense() {
+    let total = 500;
+    return total;
+  }
 }
 
 function eventListeners() {
