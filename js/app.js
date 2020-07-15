@@ -124,7 +124,7 @@ class UI {
     // remove expense from DOM
     this.expenseList.removeChild(expenseDiv);
 
-    // remove expense from itemList array
+    // filter out expense from itemList array - returns new array with only this expense
     let editedExpense = this.itemList.filter(function(item) {
       return item.id === expenseID;
     });
@@ -144,7 +144,18 @@ class UI {
 
   // delete expense
   deleteExpense(expense) {
-  
+    let expenseID = parseInt(expense.dataset.id);
+    let expenseDiv = expense.parentElement.parentElement.parentElement;
+
+    // remove expense from DOM
+    this.expenseList.removeChild(expenseDiv);
+
+    // remove expense from itemList array - returns new array with expense filtered out
+    let remainingExpenses = this.itemList.filter(function(item) {
+      return item.id !== expenseID;
+    });
+    this.itemList = remainingExpenses;
+    this.showBalance();
   }
 }
 
