@@ -48,6 +48,22 @@ class UI {
       this.balance.classList.add("showBlack");
     }
   }
+  // submit expense
+
+  submitExpenseForm() {
+    // expense name
+    const expenseValue = this.expenseInput.value;
+    // expense value
+    const amountValue = this.amountInput.value;
+    if (!expenseValue || !amountValue || amountValue < 0) {
+      this.expenseFeedback.classList.add("showItem");
+      this.expenseFeedback.innerHTML = `<p>value cannot be empty or negative</p>`;
+      const self = this;
+      setTimeout(function() {
+        self.expenseFeedback.classList.remove("showItem");
+      }, 2000);
+    }
+  }
 
   // calculate total expenses
   totalExpenses() {
@@ -73,6 +89,7 @@ function eventListeners() {
   // expense form submit
   expenseForm.addEventListener("submit", function(event) {
     event.preventDefault();
+    ui.submitExpenseForm();
   });
 
   // expense edit/delete
