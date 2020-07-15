@@ -62,7 +62,44 @@ class UI {
       setTimeout(function() {
         self.expenseFeedback.classList.remove("showItem");
       }, 2000);
+    } else {
+      let amount = parseInt(amountValue);
+      this.expenseInput.value = "";
+      this.amountInput.value = "";
+      let expense = {
+        id: this.itemID,
+        title: expenseValue,
+        amount: amount,
+      }
+      this.itemID++;
+      this.itemList.push(expense);
+
+      // add expense to the list
+      this.addExpense(expense);
+
+      // update balance
     }
+  }
+
+  // add expense to the list
+  addExpense(expense) {
+    const expenseItem = document.createElement("div");
+    expenseItem.classList.add("expense");
+    expenseItem.innerHTML = `<div class="expense-item d-flex justify-content-between align-items-baseline">
+             <h6 class="expense-title mb-0 text-uppercase list-item">${expense.title}</h6>
+             <h5 class="expense-amount mb-0 list-item">£${expense.amount}</h5>
+
+             <div class="expense-icons list-item">
+
+              <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
+               <i class="fas fa-edit"></i>
+              </a>
+              <a href="#" class="delete-icon" data-id="${expense.id}">
+               <i class="fas fa-trash"></i>
+              </a>
+             </div>
+           </div>`;
+    this.expenseList.appendChild(expenseItem);
   }
 
   // calculate total expenses
