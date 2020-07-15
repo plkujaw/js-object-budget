@@ -129,12 +129,22 @@ class UI {
       return item.id === expenseID;
     });
 
-    
+    // show expense values in the forms
+    this.expenseInput.value = editedExpense[0].title;
+    this.amountInput.value = editedExpense[0].amount;
+
+    // return remaining expenses
+    let remainingExpenses = this.itemList.filter(function(item) {
+      return item.id !== expenseID;
+    });
+    this.itemList = remainingExpenses;
+    this.showBalance();
+
   }
 
   // delete expense
   deleteExpense(expense) {
-
+  
   }
 }
 
