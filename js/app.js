@@ -124,6 +124,12 @@ class UI {
     // remove expense from DOM
     this.expenseList.removeChild(expenseDiv);
 
+    // remove expense from itemList array
+    let editedExpense = this.itemList.filter(function(item) {
+      return item.id === expenseID;
+    });
+
+    
   }
 
   // delete expense
