@@ -78,6 +78,7 @@ class UI {
       this.addExpense(expense);
 
       // update balance
+      this.showBalance();
     }
   }
 
@@ -104,7 +105,14 @@ class UI {
 
   // calculate total expenses
   totalExpenses() {
-    let total = 500;
+    let total = 0;
+    if (this.itemList.length > 0) {
+      total = this.itemList.reduce(function(totalExpenses, currentExpense) {
+      totalExpenses += currentExpense.amount;
+      return totalExpenses;
+      }, 0);
+    }
+    this.expenseAmount.textContent = total;
     return total;
   }
 }
