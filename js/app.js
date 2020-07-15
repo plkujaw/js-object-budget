@@ -115,6 +115,21 @@ class UI {
     this.expenseAmount.textContent = total;
     return total;
   }
+
+  // edit expense
+  editExpense(expense) {
+    let expenseID = parseInt(expense.dataset.id);
+    let expenseDiv = expense.parentElement.parentElement.parentElement;
+
+    // remove expense from DOM
+    this.expenseList.removeChild(expenseDiv);
+
+  }
+
+  // delete expense
+  deleteExpense(expense) {
+
+  }
 }
 
 function eventListeners() {
@@ -138,8 +153,14 @@ function eventListeners() {
   });
 
   // expense edit/delete
-  expenseList.addEventListener("click", function() {
-
+  expenseList.addEventListener("click", function(event) {
+    event.preventDefault();
+    const expense = event.target.parentElement;
+    if (expense.classList.contains("delete-icon")) {
+      ui.deleteExpense(expense);
+    } else if (expense.classList.contains("edit-icon")) {
+      ui.editExpense(expense);
+    }
   });
 
 }
